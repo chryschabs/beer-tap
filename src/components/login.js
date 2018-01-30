@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { toJS } from './middleware/to-js'
 import { connect } from 'react-redux'
+import { intlShape, injectIntl } from 'react-intl'
 import _, { mapValues } from 'lodash'
 import { makeDispatch } from './middleware/dispatcher'
 import { cMsg } from '../intl/messages/common'
@@ -23,11 +24,19 @@ class LoginComponent extends Component {
 
   render() {
 
+    const { intl: { formatMessage }} = this.props
+
     return <div>
+      {formatMessage(lMsg.email)}
       <input type="text" name="username" maxLength="50"/>
+      {formatMessage(lMsg.password)}
       <input type="password" maxLength="16"/>
     </div>
   }
+}
+
+LoginComponent.PropTypes = {
+  intl: intlShape.isRequired
 }
 
 function mapStateToProps(state) {
@@ -37,5 +46,5 @@ function mapDispatchToProps(dispatch) {
   return mapValues({}, (action) => makeDispatch(dispatch, action))
 }
 
-export const Login = connect(null, mapDispatchToProps)(toJS(LoginComponent))
+export const Login = connect(null, mapDispatchToProps)(toJS(injectIntl(LoginComponent)))
 export { Login as default }
