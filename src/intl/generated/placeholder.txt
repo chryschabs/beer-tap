@@ -1,0 +1,1 @@
+Dir used to generate intl files
