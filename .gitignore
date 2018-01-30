@@ -2,5 +2,5 @@
 build
 node_modules
 *.log
-#src/intl/generated/*
+src/intl/generated/*
 .DS_Store
