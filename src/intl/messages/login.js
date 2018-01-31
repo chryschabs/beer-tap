@@ -1,9 +1,13 @@
 import { defineMessages } from 'react-intl'
 
 const login = defineMessages({
+  login: {
+    id: 'login.login',
+    defaultMessage: 'Login'
+  },
   email: {
     id: 'login.email',
-    defaultMessage: 'Login'
+    defaultMessage: 'Email'
   },
   password: {
     id: 'login.password',

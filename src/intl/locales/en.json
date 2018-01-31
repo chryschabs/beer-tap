@@ -1,6 +1,7 @@
 {
   "common.cancel": "Cancel",
   "common.confirm": "Confirm",
-  "login.email": "Login",
+  "login.email": "Email",
+  "login.login": "Login",
   "login.password": "Password"
 }

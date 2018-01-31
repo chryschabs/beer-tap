@@ -2,5 +2,6 @@
   "common.cancel": "Annuler",
   "common.confirm": "Confirmer",
   "login.email": "Connexion",
+  "login.login": "Login",
   "login.password": "Mot de passe"
 }

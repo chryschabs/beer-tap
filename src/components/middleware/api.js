@@ -1,9 +1,13 @@
 /*eslint consistent-return: 0*/
-import { isUndefined } from 'lodash'
+import { forEach, isUndefined } from 'lodash'
+import { push } from 'react-router-redux'
 import { emptyError } from '../../helpers/errors'
+
 export const HTTP_CODES = {
   NO_CONTENT: 204
 }
+
+const API_URL = ''
 
 export default function apiMiddleware({ dispatch, getState }) {
   return next => action => {
@@ -15,7 +19,6 @@ export default function apiMiddleware({ dispatch, getState }) {
     } = action
 
     if (!types) {
-      // Normal action: pass it on
       return next(action)
     }
 
@@ -66,4 +69,64 @@ export function processBodyIfAny(httpReponse) {
       return body
     })
     : Promise.resolve(body)
+}
+
+export function getApiTypes(actions, actionPrefix) {
+  return [
+    actions[`${actionPrefix}_REQUEST`],
+    actions[`${actionPrefix}_SUCCESS`],
+    actions[`${actionPrefix}_FAILURE`]
+  ]
+}
+
+export function fetchFromApi(url, init, dispatch) {
+
+  const URL = `api/${url}`
+
+  return new Promise((resolve, reject) => {
+    fetch(buildRequest(URL, init))
+      .then(response => {
+        switch (response.status) {
+          case 401:
+            if (response.url === buildApiUrl('login')) {
+              resolve(response)
+            }
+            dispatch(push('/logout'))
+            return reject()
+
+          case 403:
+            dispatch(push('/logout'))
+            return resolve(response)
+
+          case 404:
+            dispatch(push('/not-found'))
+            return resolve(response)
+
+          default:
+            if (response.status >= 400) {
+              reject(response)
+            } else {
+              resolve(response)
+            }
+        }
+      })
+      .catch(err => reject(err))
+  })
+}
+
+export function buildRequest(url, init) {
+  const request = new Request(buildApiUrl(url), { ...init, mode: 'cors' })
+
+  request.headers.set('Accept', 'application/json')
+  request.headers.set('Content-Type', 'application/json')
+
+  /*if (getIsAuthenticated()) {
+    request.headers.set('Authorization', `Bearer ${getAccessToken()}`)
+  }*/
+
+  return request
+}
+
+function buildApiUrl(url) {
+  return [API_URL, url].join('/')
 }

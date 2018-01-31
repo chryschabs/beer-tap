@@ -20,8 +20,7 @@ class MessageDisplayerComponent extends Component {
   }
 
   render() {
-
-    return <div>
+    return <div id="message-displayer-top-level-div">
       { this.props.children }
     </div>
   }
@@ -31,9 +30,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return mapValues({
-
-  }, (action) => makeDispatch(dispatch, action))
+  return mapValues({}, (action) => makeDispatch(dispatch, action))
 }
 
 export const MessageDisplayer = connect(null, mapDispatchToProps)(toJS(MessageDisplayerComponent))

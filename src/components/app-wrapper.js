@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import { Provider } from 'react-redux'
 import { Router } from 'react-router'
-import { head } from 'lodash'
 import { addLocaleData, IntlProvider } from 'react-intl'
 import en from 'react-intl/locale-data/en'
 import fr from 'react-intl/locale-data/fr'
