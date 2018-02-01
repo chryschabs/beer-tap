@@ -1,7 +1,7 @@
 import { combineReducers, applyMiddleware, createStore } from 'redux'
 import { browserHistory } from 'react-router'
 import { routerMiddleware } from 'react-router-redux'
-import thunk from 'redux-thunk'
+import * as thunk from 'redux-thunk'
 import apiMiddleware from '../components/middleware/api'
 import * as reducers from '../store/reducers/reducers'
 
@@ -19,5 +19,5 @@ export function buildStore() {
   const rootReducer = combineReducers(reducers)
   const routerHistoryMiddleware = routerMiddleware(browserHistory)
 
-  return applyMiddleware(thunk, apiMiddleware, routerHistoryMiddleware)(createStore)(rootReducer)
+  return applyMiddleware(thunk.default, apiMiddleware, routerHistoryMiddleware)(createStore)(rootReducer)
 }

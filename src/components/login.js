@@ -3,13 +3,10 @@ import { toJS } from './middleware/to-js'
 import { connect } from 'react-redux'
 import { push } from 'react-router-redux'
 import { intlShape, injectIntl } from 'react-intl'
-import _, { mapValues } from 'lodash'
-import { makeDispatch } from './middleware/dispatcher'
 import { cMsg } from '../intl/messages/common'
 import { lMsg } from '../intl/messages/login'
 import TextField from 'material-ui/TextField'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
-import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme'
 import lightBaseTheme from 'material-ui/styles/baseThemes/lightBaseTheme'
 import RaisedButton from 'material-ui/RaisedButton'
 import getMuiTheme from 'material-ui/styles/getMuiTheme'
@@ -24,7 +21,7 @@ const styles = {
     width: '300px',
     alignContent: 'space-between'
   },
-  credentialStyle: {
+  defaultStyle: {
     alignSelf: 'center'
   }
 }
@@ -44,10 +41,10 @@ class LoginComponent extends Component {
 
     return <MuiThemeProvider muiTheme={getMuiTheme(lightBaseTheme)}>
       <div style={styles.container}>
-        <TextField style={styles.credentialStyle}
+        <TextField style={styles.defaultStyle}
                    maxLength="50"
                    hintText={emailLabel}/>
-        <TextField style={styles.credentialStyle}
+        <TextField style={styles.defaultStyle}
                    maxLength="16"
                    floatingLabelText={passwordLabel}
                    type="password"/>
@@ -67,9 +64,9 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return mapValues({
+  return {
     goToDashboard: () => dispatch(push('/dashboard'))
-  }, (action) => makeDispatch(dispatch, action))
+  }
 }
 
 export const Login = connect(null, mapDispatchToProps)(toJS(injectIntl(LoginComponent)))

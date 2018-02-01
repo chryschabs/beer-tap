@@ -8,8 +8,12 @@ const common = defineMessages({
   confirm: {
     id: 'common.confirm',
     defaultMessage: 'Confirm'
+  },
+  requiredField: {
+    id: 'common.requiredField',
+    defaultMessage: 'This field is required'
   }
 })
 
-export { common as msg }
+export { common as cMsg }
 export { common as default }

@@ -1,7 +1,15 @@
 {
   "common.cancel": "Cancel",
   "common.confirm": "Confirm",
+  "common.requiredField": "This field is required",
   "login.email": "Email",
   "login.login": "Login",
-  "login.password": "Password"
+  "login.password": "Password",
+  "recipe.beerBrewhouseEfficiency": "Efficiency",
+  "recipe.beerBrewhouseEfficiencyHint": "In % or leave empty.",
+  "recipe.beerName": "Beer name",
+  "recipe.beerNameHint": "Think of something cool.",
+  "recipe.createRecipeTitle": "Create recipe",
+  "recipe.desiredFinalVolume": "Desired final volume",
+  "recipe.desiredFinalVolumeHint": "In Liters, that's right."
 }

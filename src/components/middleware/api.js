@@ -7,6 +7,14 @@ export const HTTP_CODES = {
   NO_CONTENT: 204
 }
 
+export function getActionType(actions, actionPrefix) {
+  return [
+    actions[`${actionPrefix}_REQUEST`],
+    actions[`${actionPrefix}_SUCCESS`],
+    actions[`${actionPrefix}_FAILURE`]
+  ]
+}
+
 const API_URL = ''
 
 export default function apiMiddleware({ dispatch, getState }) {

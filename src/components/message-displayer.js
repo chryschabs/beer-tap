@@ -4,6 +4,15 @@ import { connect } from 'react-redux'
 import _, { mapValues } from 'lodash'
 import { makeDispatch } from './middleware/dispatcher'
 
+const styles = {
+  container: {
+    margin: 'auto',
+    display: 'flex',
+    flexWrap: 'wrap',
+    flexDirection: 'column'
+  }
+}
+
 class MessageDisplayerComponent extends Component {
 
   componentWillReceiveProps(nextProps) {
@@ -20,7 +29,8 @@ class MessageDisplayerComponent extends Component {
   }
 
   render() {
-    return <div id="message-displayer-top-level-div">
+    return <div id="message-displayer-top-level-div"
+                style={styles.container}>
       { this.props.children }
     </div>
   }
